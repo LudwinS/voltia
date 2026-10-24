@@ -1,0 +1,280 @@
+{
+  "version": 1,
+  "author": "VoltIA",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {
+        "env": "micropython-20231227-v1.22.0"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": -160,
+      "left": -190,
+      "attrs": {
+        "label": "Carga (W)"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot2",
+      "top": -160,
+      "left": -90,
+      "attrs": {
+        "label": "Voltaje (V)"
+      }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "sw1",
+      "top": -130,
+      "left": 20,
+      "attrs": {
+        "label": "AUTO / MANUAL"
+      }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": -150,
+      "left": 140,
+      "attrs": {
+        "i2cAddress": "0x3c"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 40,
+      "left": 250,
+      "attrs": {
+        "color": "green",
+        "label": "Normal"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 40,
+      "left": 300,
+      "attrs": {
+        "color": "yellow",
+        "label": "Alto"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": 40,
+      "left": 350,
+      "attrs": {
+        "color": "red",
+        "label": "Alerta"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 150,
+      "left": 220,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 150,
+      "left": 270,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 150,
+      "left": 320,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 30,
+      "left": 420,
+      "attrs": {
+        "volume": "0.1"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "pot1:VCC",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "pot1:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "pot1:SIG",
+      "esp:34",
+      "green",
+      []
+    ],
+    [
+      "pot2:VCC",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "pot2:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "pot2:SIG",
+      "esp:35",
+      "green",
+      []
+    ],
+    [
+      "sw1:1",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "sw1:3",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "sw1:2",
+      "esp:15",
+      "blue",
+      []
+    ],
+    [
+      "oled1:VCC",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "oled1:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "oled1:SCL",
+      "esp:22",
+      "purple",
+      []
+    ],
+    [
+      "oled1:SDA",
+      "esp:21",
+      "orange",
+      []
+    ],
+    [
+      "esp:2",
+      "r1:1",
+      "green",
+      []
+    ],
+    [
+      "r1:2",
+      "led1:A",
+      "green",
+      []
+    ],
+    [
+      "led1:C",
+      "esp:GND.2",
+      "black",
+      []
+    ],
+    [
+      "esp:4",
+      "r2:1",
+      "gold",
+      []
+    ],
+    [
+      "r2:2",
+      "led2:A",
+      "gold",
+      []
+    ],
+    [
+      "led2:C",
+      "esp:GND.2",
+      "black",
+      []
+    ],
+    [
+      "esp:5",
+      "r3:1",
+      "red",
+      []
+    ],
+    [
+      "r3:2",
+      "led3:A",
+      "red",
+      []
+    ],
+    [
+      "led3:C",
+      "esp:GND.2",
+      "black",
+      []
+    ],
+    [
+      "bz1:2",
+      "esp:18",
+      "magenta",
+      []
+    ],
+    [
+      "bz1:1",
+      "esp:GND.2",
+      "black",
+      []
+    ]
+  ],
+  "dependencies": {}
+}

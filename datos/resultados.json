@@ -1,0 +1,295 @@
+{
+ "n": 442,
+ "n_aparato": 303,
+ "episodios": 93,
+ "n_train": 246,
+ "n_test": 57,
+ "inicio": "2026-10-16 22:05:15-06:00",
+ "fin": "2026-10-17 01:05:16-06:00",
+ "estados": {
+  "NORMAL": 248,
+  "CONSUMO_ALTO": 93,
+  "SOBRECARGA": 77,
+  "VOLTAJE_ANOMALO": 24
+ },
+ "aparatos": {
+  "Aire acondicionado": 77,
+  "Refrigeradora": 60,
+  "Secadora de pelo": 39,
+  "Plancha": 27,
+  "Televisor": 26,
+  "Microondas": 26,
+  "Olla arrocera": 25,
+  "Base": 23
+ },
+ "reglas_coincidencia": 0.9864253393665159,
+ "reglas_arbol": "|--- potencia <= 1499\n|   |--- voltaje <= 112\n|   |   |--- class: VOLTAJE_ANOMALO\n|   |--- voltaje >  112\n|   |   |--- voltaje <= 128\n|   |   |   |--- class: NORMAL\n|   |   |--- voltaje >  128\n|   |   |   |--- class: VOLTAJE_ANOMALO\n|--- potencia >  1499\n|   |--- potencia <= 2190\n|   |   |--- voltaje <= 128\n|   |   |   |--- class: CONSUMO_ALTO\n|   |   |--- voltaje >  128\n|   |   |   |--- class: VOLTAJE_ANOMALO\n|   |--- potencia >  2190\n|   |   |--- voltaje <= 128\n|   |   |   |--- class: SOBRECARGA\n|   |   |--- voltaje >  128\n|   |   |   |--- class: VOLTAJE_ANOMALO\n",
+ "comparacion": [
+  {
+   "modelo": "Random Forest",
+   "f1_macro": 0.8854,
+   "f1_std": 0.0554,
+   "accuracy": 0.8979,
+   "segundos": 0.6763
+  },
+  {
+   "modelo": "Extra Trees",
+   "f1_macro": 0.8743,
+   "f1_std": 0.0765,
+   "accuracy": 0.9057,
+   "segundos": 0.5668
+  },
+  {
+   "modelo": "Gradient Boosting (Hist)",
+   "f1_macro": 0.8257,
+   "f1_std": 0.0552,
+   "accuracy": 0.8493,
+   "segundos": 2.3695
+  },
+  {
+   "modelo": "Árbol de Decisión",
+   "f1_macro": 0.8078,
+   "f1_std": 0.0658,
+   "accuracy": 0.8244,
+   "segundos": 0.0111
+  },
+  {
+   "modelo": "Regresión logística",
+   "f1_macro": 0.7964,
+   "f1_std": 0.0782,
+   "accuracy": 0.8249,
+   "segundos": 0.028
+  },
+  {
+   "modelo": "SVM (kernel RBF)",
+   "f1_macro": 0.7503,
+   "f1_std": 0.0755,
+   "accuracy": 0.7931,
+   "segundos": 0.0163
+  },
+  {
+   "modelo": "k vecinos más cercanos (k=5)",
+   "f1_macro": 0.7311,
+   "f1_std": 0.0365,
+   "accuracy": 0.8006,
+   "segundos": 0.0138
+  },
+  {
+   "modelo": "Línea base (clase más frecuente)",
+   "f1_macro": 0.0508,
+   "f1_std": 0.0051,
+   "accuracy": 0.2561,
+   "segundos": 0.0072
+  }
+ ],
+ "elegido": "Random Forest",
+ "params": {
+  "max_depth": null,
+  "max_features": "sqrt",
+  "min_samples_leaf": 1,
+  "n_estimators": 500
+ },
+ "cv_f1": 0.8908519108815162,
+ "test_acc": 0.9298245614035088,
+ "test_f1": 0.9178030303030303,
+ "importancias": {
+  "reactiva": 0.1276,
+  "fp": 0.0913,
+  "potencia": 0.0858,
+  "aparente": 0.0563,
+  "delta_p": 0.0477,
+  "corriente": 0.0356,
+  "voltaje": 0.0067
+ },
+ "confusiones": [
+  [
+   "Secadora de pelo",
+   "Aire acondicionado",
+   2
+  ],
+  [
+   "Plancha",
+   "Olla arrocera",
+   1
+  ],
+  [
+   "Secadora de pelo",
+   "Plancha",
+   1
+  ]
+ ],
+ "muestra": [
+  [
+   "140",
+   "2026-10-16 22:50:50-06:00",
+   "120.0",
+   "18.34",
+   "2005.5",
+   "0.911",
+   "CONSUMO_ALTO",
+   "Aire acondicionado"
+  ],
+  [
+   "177",
+   "2026-10-16 23:59:01-06:00",
+   "117.9",
+   "13.47",
+   "1434.6",
+   "0.903",
+   "NORMAL",
+   "Microondas"
+  ],
+  [
+   "214",
+   "2026-10-17 00:08:16-06:00",
+   "120.9",
+   "2.3",
+   "233.3",
+   "0.839",
+   "NORMAL",
+   "Refrigeradora"
+  ],
+  [
+   "251",
+   "2026-10-17 00:17:31-06:00",
+   "122.0",
+   "22.88",
+   "2608.9",
+   "0.935",
+   "SOBRECARGA",
+   "Aire acondicionado"
+  ],
+  [
+   "288",
+   "2026-10-17 00:26:46-06:00",
+   "118.4",
+   "11.9",
+   "1396.3",
+   "0.991",
+   "NORMAL",
+   "Plancha"
+  ],
+  [
+   "325",
+   "2026-10-17 00:36:01-06:00",
+   "117.8",
+   "1.99",
+   "218.9",
+   "0.934",
+   "NORMAL",
+   "Televisor"
+  ],
+  [
+   "362",
+   "2026-10-17 00:45:16-06:00",
+   "118.5",
+   "23.15",
+   "2582.7",
+   "0.941",
+   "SOBRECARGA",
+   "Aire acondicionado"
+  ],
+  [
+   "399",
+   "2026-10-17 00:54:31-06:00",
+   "118.3",
+   "3.45",
+   "359.7",
+   "0.881",
+   "NORMAL",
+   "Refrigeradora"
+  ]
+ ],
+ "por_clase": {
+  "Aire acondicionado": {
+   "precision": 0.875,
+   "recall": 1.0,
+   "f1-score": 0.9333333333333333,
+   "support": 14.0
+  },
+  "Base": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 4.0
+  },
+  "Microondas": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 5.0
+  },
+  "Olla arrocera": {
+   "precision": 0.8333333333333334,
+   "recall": 1.0,
+   "f1-score": 0.9090909090909091,
+   "support": 5.0
+  },
+  "Plancha": {
+   "precision": 0.8333333333333334,
+   "recall": 0.8333333333333334,
+   "f1-score": 0.8333333333333334,
+   "support": 6.0
+  },
+  "Refrigeradora": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 12.0
+  },
+  "Secadora de pelo": {
+   "precision": 1.0,
+   "recall": 0.5,
+   "f1-score": 0.6666666666666666,
+   "support": 6.0
+  },
+  "Televisor": {
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1-score": 1.0,
+   "support": 5.0
+  }
+ },
+ "stats": {
+  "voltaje": {
+   "count": 442.0,
+   "mean": 119.79,
+   "std": 4.44,
+   "min": 96.8,
+   "25%": 118.62,
+   "50%": 120.0,
+   "75%": 121.2,
+   "max": 149.7
+  },
+  "corriente": {
+   "count": 442.0,
+   "mean": 12.05,
+   "std": 9.85,
+   "min": 0.64,
+   "25%": 3.05,
+   "50%": 12.31,
+   "75%": 17.22,
+   "max": 47.29
+  },
+  "potencia": {
+   "count": 442.0,
+   "mean": 1349.24,
+   "std": 1116.12,
+   "min": 70.4,
+   "25%": 340.12,
+   "50%": 1390.75,
+   "75%": 1995.75,
+   "max": 4998.1
+  },
+  "fp": {
+   "count": 442.0,
+   "mean": 0.92,
+   "std": 0.04,
+   "min": 0.83,
+   "25%": 0.89,
+   "50%": 0.93,
+   "75%": 0.96,
+   "max": 1.0
+  }
+ }
+}
